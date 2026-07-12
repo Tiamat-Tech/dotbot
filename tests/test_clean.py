@@ -7,7 +7,9 @@ import pytest
 from tests.conftest import Dotfiles
 
 
-def test_clean_default(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_default(
+    root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean uses default unless overridden."""
 
     os.symlink(os.path.join(root, "nowhere"), os.path.join(home, ".g"))
@@ -27,7 +29,9 @@ def test_clean_default(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Cal
     assert os.path.islink(os.path.join(home, ".g"))
 
 
-def test_clean_environment_variable_expansion(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_environment_variable_expansion(
+    home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean expands environment variables."""
 
     os.symlink(os.path.join(dotfiles.directory, "f"), os.path.join(home, ".f"))
@@ -40,7 +44,9 @@ def test_clean_environment_variable_expansion(home: str, dotfiles: Dotfiles, run
     assert not os.path.islink(os.path.join(home, ".f"))
 
 
-def test_clean_missing(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_missing(
+    home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean deletes links to missing files."""
 
     dotfiles.write("f")
@@ -53,7 +59,9 @@ def test_clean_missing(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., 
     assert not os.path.islink(os.path.join(home, ".g"))
 
 
-def test_clean_nonexistent(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_nonexistent(
+    home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean ignores nonexistent directories."""
 
     dotfiles.write_config([{"clean": ["~", "~/fake"]}])
@@ -62,7 +70,9 @@ def test_clean_nonexistent(home: str, dotfiles: Dotfiles, run_dotbot: Callable[.
     assert not os.path.isdir(os.path.join(home, "fake"))
 
 
-def test_clean_outside_force(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_outside_force(
+    root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean forced to remove files linking outside dotfiles directory."""
 
     os.symlink(os.path.join(root, "nowhere"), os.path.join(home, ".g"))
@@ -72,7 +82,9 @@ def test_clean_outside_force(root: str, home: str, dotfiles: Dotfiles, run_dotbo
     assert not os.path.islink(os.path.join(home, ".g"))
 
 
-def test_clean_outside(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_outside(
+    home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean ignores files linking outside dotfiles directory."""
 
     os.symlink(os.path.join(dotfiles.directory, "f"), os.path.join(home, ".f"))
@@ -84,7 +96,9 @@ def test_clean_outside(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., 
     assert os.path.islink(os.path.join(home, ".g"))
 
 
-def test_clean_recursive_1(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_recursive_1(
+    root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean respects when the recursive directive is off (default)."""
 
     os.makedirs(os.path.join(home, "a", "b"))
@@ -99,7 +113,9 @@ def test_clean_recursive_1(root: str, home: str, dotfiles: Dotfiles, run_dotbot:
     assert os.path.islink(os.path.join(home, "a", "b", "e"))
 
 
-def test_clean_recursive_2(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_recursive_2(
+    root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify clean respects when the recursive directive is on."""
 
     os.makedirs(os.path.join(home, "a", "b"))
@@ -114,7 +130,9 @@ def test_clean_recursive_2(root: str, home: str, dotfiles: Dotfiles, run_dotbot:
     assert not os.path.islink(os.path.join(home, "a", "b", "e"))
 
 
-def test_clean_defaults_1(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_defaults_1(
+    root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify that clean doesn't erase non-dotfiles links by default."""
 
     os.symlink(os.path.join(root, "nowhere"), os.path.join(home, ".g"))
@@ -124,7 +142,9 @@ def test_clean_defaults_1(root: str, home: str, dotfiles: Dotfiles, run_dotbot: 
     assert os.path.islink(os.path.join(home, ".g"))
 
 
-def test_clean_defaults_2(root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_clean_defaults_2(
+    root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify that explicit clean defaults override the implicit default."""
 
     os.symlink(os.path.join(root, "nowhere"), os.path.join(home, ".g"))
@@ -140,7 +160,11 @@ def test_clean_defaults_2(root: str, home: str, dotfiles: Dotfiles, run_dotbot: 
 
 
 def test_clean_dry_run(
-    capfd: pytest.CaptureFixture[str], root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    root: str,
+    home: str,
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that the clean plugin does not delete files during a dry run."""
 
@@ -152,13 +176,18 @@ def test_clean_dry_run(
 
     lines = capfd.readouterr().out.splitlines()
     assert any(
-        f"Would remove invalid link {os.path.join(home, '.g')} -> {os.path.join(root, 'nowhere')}" in line
+        f"Would remove invalid link {os.path.join(home, '.g')} -> {os.path.join(root, 'nowhere')}"
+        in line
         for line in lines
     )
 
 
 def test_clean_dry_run_recursive(
-    capfd: pytest.CaptureFixture[str], root: str, home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    root: str,
+    home: str,
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that the clean plugin does not delete files during a recursive dry run."""
 
@@ -175,14 +204,17 @@ def test_clean_dry_run_recursive(
 
     lines = capfd.readouterr().out.splitlines()
     assert any(
-        f"Would remove invalid link {os.path.join(home, 'c')} -> {os.path.join(root, 'nowhere')}" in line
+        f"Would remove invalid link {os.path.join(home, 'c')} -> {os.path.join(root, 'nowhere')}"
+        in line
         for line in lines
     )
     assert any(
-        f"Would remove invalid link {os.path.join(home, 'a', 'd')} -> {os.path.join(root, 'nowhere')}" in line
+        f"Would remove invalid link {os.path.join(home, 'a', 'd')} -> {os.path.join(root, 'nowhere')}"
+        in line
         for line in lines
     )
     assert any(
-        f"Would remove invalid link {os.path.join(home, 'a', 'b', 'e')} -> {os.path.join(root, 'nowhere')}" in line
+        f"Would remove invalid link {os.path.join(home, 'a', 'b', 'e')} -> {os.path.join(root, 'nowhere')}"
+        in line
         for line in lines
     )

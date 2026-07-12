@@ -39,7 +39,10 @@ class Dispatcher:
         self._dry_run: bool = options is not None and bool(options.dry_run)
 
     def _setup_context(
-        self, base_directory: str, options: Optional[Namespace], plugins: Optional[List[Type[Plugin]]]
+        self,
+        base_directory: str,
+        options: Optional[Namespace],
+        plugins: Optional[List[Type[Plugin]]],
     ) -> None:
         path = os.path.abspath(os.path.expanduser(base_directory))
         if not os.path.exists(path):
@@ -68,7 +71,9 @@ class Dispatcher:
                             # load the new plugins and add them to the list of plugins
                             # this mutates self._context._plugins; we don't add a setter method
                             # to Context because we don't want plugins to call it
-                            new_plugins = load_plugins([plugin_path], self._context._plugins)  # noqa: SLF001
+                            new_plugins = load_plugins(
+                                [plugin_path], self._context._plugins
+                            )  # noqa: SLF001
                             for plugin_class in new_plugins:
                                 self._plugins.append(plugin_class(self._context))
                         except Exception as err:  # noqa: BLE001
@@ -85,7 +90,9 @@ class Dispatcher:
                 for plugin in self._plugins:
                     if plugin.can_handle(action):
                         if self._dry_run and not plugin.supports_dry_run:
-                            self._log.action(f"Skipping dry-run-unaware plugin {plugin.__class__.__name__}")
+                            self._log.action(
+                                f"Skipping dry-run-unaware plugin {plugin.__class__.__name__}"
+                            )
                             handled = True
                             continue
                         try:
@@ -97,7 +104,9 @@ class Dispatcher:
                             success &= local_success
                             handled = True
                         except Exception as err:  # noqa: BLE001
-                            self._log.error(f"An error was encountered while executing action {action}")
+                            self._log.error(
+                                f"An error was encountered while executing action {action}"
+                            )
                             self._log.debug(str(err))
                             if self._exit:
                                 # There was an exception, exit

@@ -6,7 +6,9 @@ from tests.conftest import Dotfiles
 
 
 def test_shell_allow_stdout(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify shell command STDOUT works."""
 
@@ -29,7 +31,9 @@ def test_shell_allow_stdout(
 
 
 def test_shell_cli_verbosity_overrides_1(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that '-vv' overrides the implicit default stdout=False."""
 
@@ -41,7 +45,9 @@ def test_shell_cli_verbosity_overrides_1(
 
 
 def test_shell_cli_verbosity_overrides_2(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that '-vv' overrides an explicit stdout=False."""
 
@@ -53,7 +59,9 @@ def test_shell_cli_verbosity_overrides_2(
 
 
 def test_shell_cli_verbosity_overrides_3(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that '-vv' overrides an explicit defaults:shell:stdout=False."""
 
@@ -70,7 +78,9 @@ def test_shell_cli_verbosity_overrides_3(
 
 
 def test_shell_cli_verbosity_stderr(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that commands can output to STDERR."""
 
@@ -82,7 +92,9 @@ def test_shell_cli_verbosity_stderr(
 
 
 def test_shell_cli_verbosity_stderr_with_explicit_stdout_off(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that commands can output to STDERR with STDOUT explicitly off."""
 
@@ -105,7 +117,9 @@ def test_shell_cli_verbosity_stderr_with_explicit_stdout_off(
 
 
 def test_shell_cli_verbosity_stderr_with_defaults_stdout_off(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that commands can output to STDERR with defaults:shell:stdout=False."""
 
@@ -132,7 +146,9 @@ def test_shell_cli_verbosity_stderr_with_defaults_stdout_off(
 
 
 def test_shell_single_v_verbosity_stdout(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that a single '-v' verbosity doesn't override stdout=False."""
 
@@ -144,7 +160,9 @@ def test_shell_single_v_verbosity_stdout(
 
 
 def test_shell_single_v_verbosity_stderr(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that a single '-v' verbosity doesn't override stderr=False."""
 
@@ -156,7 +174,9 @@ def test_shell_single_v_verbosity_stderr(
 
 
 def test_shell_compact_stdout_1(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that shell command stdout works in compact form."""
 
@@ -173,7 +193,9 @@ def test_shell_compact_stdout_1(
 
 
 def test_shell_compact_stdout_2(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that shell command stdout works in compact form."""
 
@@ -191,7 +213,9 @@ def test_shell_compact_stdout_2(
 
 
 def test_shell_stdout_disabled_by_default(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that the shell command disables stdout by default."""
 
@@ -209,7 +233,9 @@ def test_shell_stdout_disabled_by_default(
 
 
 def test_shell_can_override_defaults(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that the shell command can override defaults."""
 
@@ -226,7 +252,9 @@ def test_shell_can_override_defaults(
 
 
 def test_shell_quiet_default(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that quiet is off by default."""
 
@@ -251,7 +279,9 @@ def test_shell_quiet_default(
 
 
 def test_shell_quiet_enabled_with_description(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify that only the description is shown when quiet is enabled."""
 
@@ -277,7 +307,9 @@ def test_shell_quiet_enabled_with_description(
 
 
 def test_shell_quiet_enabled_without_description(
-    capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
 ) -> None:
     """Verify nothing is shown when quiet is enabled with no description."""
 
@@ -300,7 +332,11 @@ def test_shell_quiet_enabled_without_description(
     assert not any(line.startswith("echo banana") for line in stdout)
 
 
-def test_shell_dry_run(capfd: pytest.CaptureFixture[str], dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_shell_dry_run(
+    capfd: pytest.CaptureFixture[str],
+    dotfiles: Dotfiles,
+    run_dotbot: Callable[..., None],
+) -> None:
     """Verify that the shell plugin does not execute commands during a dry run."""
 
     dotfiles.write_config(

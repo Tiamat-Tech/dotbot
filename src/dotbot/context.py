@@ -13,7 +13,10 @@ class Context:
     """
 
     def __init__(
-        self, base_directory: str, options: Optional[Namespace] = None, plugins: "Optional[List[Type[Plugin]]]" = None
+        self,
+        base_directory: str,
+        options: Optional[Namespace] = None,
+        plugins: "Optional[List[Type[Plugin]]]" = None,
     ):
         self._base_directory = base_directory
         self._defaults: Dict[str, Any] = {}

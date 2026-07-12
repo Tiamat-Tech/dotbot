@@ -29,7 +29,9 @@ def test_json(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) ->
     assert os.path.isdir(os.path.join(home, "d"))
 
 
-def test_json_tabs(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_json_tabs(
+    home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify JSON configs with tabs work."""
 
     document = """[\n\t{\n\t\t"create": ["~/d"]\n\t}\n]"""
@@ -39,7 +41,9 @@ def test_json_tabs(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None
     assert os.path.isdir(os.path.join(home, "d"))
 
 
-def test_multiple_config(home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]) -> None:
+def test_multiple_config(
+    home: str, dotfiles: Dotfiles, run_dotbot: Callable[..., None]
+) -> None:
     """Verify that passing multiple configs works."""
 
     dotfiles.write("config1.json", json.dumps([{"create": ["~/d1"]}]))
